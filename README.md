@@ -2,12 +2,13 @@
 
 ## Summary
 
-- Pnpm
-- Prettier config with '@trivago/prettier-plugin-sort-imports' and 'prettier-plugin-tailwindcss'
+- pnpm
+- Prettier config with `@trivago/prettier-plugin-sort-imports` and `prettier-plugin-tailwindcss`
 - Tailwind CSS (with a prettier plugin and recommended VSCode extension)
 - ESlint config with `plugin:@typescript-eslint/recommended-type-checked` and `plugin:jsx-a11y/recommended`
 - Strict TypeScript config
 - [TS Reset](https://github.com/mattpocock/ts-reset)
+- VSCode and coc.nvim settings
 
 ## Getting Started
 
