@@ -1,17 +1,26 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Next.js template
+
+## Summary
+
+- Pnpm
+- Prettier config with '@trivago/prettier-plugin-sort-imports' and 'prettier-plugin-tailwindcss'
+- Tailwind CSS (with a prettier plugin and recommended VSCode extension)
+- ESlint config with `plugin:@typescript-eslint/recommended-type-checked` and `plugin:jsx-a11y/recommended`
+- Strict TypeScript config
+- [TS Reset](https://github.com/mattpocock/ts-reset)
 
 ## Getting Started
 
-First, run the development server:
+Use the template by running
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpx create-next-app@latest --example "https://github.com/none23/next-template" [project-name]
+```
+
+Run development server:
+
+```bash
 pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
