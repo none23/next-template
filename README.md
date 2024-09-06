@@ -9,6 +9,8 @@
 - Strict TypeScript config
 - [TS Reset](https://github.com/mattpocock/ts-reset)
 - VSCode and coc.nvim settings
+- Github Action for linting and type checking
+- Eslint and TS checks disabled during build for faster builds. Those are handled by CI and the editor
 
 ## Getting Started
 
