@@ -5,10 +5,10 @@
 - pnpm
 - Prettier config with `@trivago/prettier-plugin-sort-imports` and `prettier-plugin-tailwindcss`
 - Tailwind CSS (with a prettier plugin and recommended VSCode extension)
-- ESlint config with `plugin:@typescript-eslint/recommended-type-checked` and `plugin:jsx-a11y/recommended`
+- ESlint config with `plugin:@typescript-eslint/recommended-type-checked`, `plugin:jsx-a11y/recommended`, and `eslint-plugin-react-compiler`
 - Strict TypeScript config
 - [TS Reset](https://github.com/mattpocock/ts-reset)
-- VSCode and coc.nvim settings
+- VSCode settings
 - Github Action for linting and type checking
 - Eslint and TS checks disabled during build for faster builds. Those are handled by CI and the editor
 
