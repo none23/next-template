@@ -1,0 +1,11 @@
+#!/bin/sh
+pnpm prettier --check . &
+PID1=$!
+
+pnpm lint &
+PID2=$!
+
+pnpm tsc &
+PID3=$!
+
+wait $PID1 $PID2 $PID3

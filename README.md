@@ -11,6 +11,8 @@
 - VSCode settings
 - Github Action for linting and type checking
 - Eslint and TS checks disabled during build for faster builds. Those are handled by CI and the editor
+- Pre-commit hook, formatting staged files with prettier
+- Pre-push hook, running linting and type checking
 
 ## Getting Started
 
