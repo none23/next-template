@@ -10,7 +10,8 @@ module.exports = {
   importOrderSeparation: true,
   importOrderSortSpecifiers: true,
   importOrder: [
-    '^react',
+    'server-only',
+    '^(react(/.*)?|react(-dom)?(/.*)?|next(/.*)?)$',
     '^next',
     '<THIRD_PARTY_MODULES>',
     '^@/(.*)$',
