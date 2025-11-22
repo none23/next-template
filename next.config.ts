@@ -1,13 +1,11 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
+  reactCompiler: true,
   experimental: {
-    reactCompiler: true,
     typedEnv: true,
-    // typedRoutes: true,
-  },
-  eslint: {
-    ignoreDuringBuilds: true,
+    typedRoutes: true,
+    turbopackFileSystemCacheForDev: true,
   },
   typescript: {
     ignoreBuildErrors: true,

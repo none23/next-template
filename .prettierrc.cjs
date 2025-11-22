@@ -11,6 +11,7 @@ module.exports = {
   importOrderSortSpecifiers: true,
   importOrder: [
     'server-only',
+    '^node:',
     '^(react(/.*)?|react(-dom)?(/.*)?|next(/.*)?)$',
     '^next',
     '<THIRD_PARTY_MODULES>',
