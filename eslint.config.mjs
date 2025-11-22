@@ -1,57 +1,75 @@
-import { FlatCompat } from '@eslint/eslintrc';
-import js from '@eslint/js';
-import typescriptEslint from '@typescript-eslint/eslint-plugin';
-import tsParser from '@typescript-eslint/parser';
-import nextCoreWebVitals from 'eslint-config-next/core-web-vitals';
-import jsxA11Y from 'eslint-plugin-jsx-a11y';
-import reactCompiler from 'eslint-plugin-react-compiler';
-import { defineConfig, globalIgnores } from 'eslint/config';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import js from '@eslint/js';
+import tsParser from '@typescript-eslint/parser';
+import nextCoreWebVitals from 'eslint-config-next/core-web-vitals';
+import jsxA11y from 'eslint-plugin-jsx-a11y';
+import reactCompiler from 'eslint-plugin-react-compiler';
+import tseslint from 'typescript-eslint';
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-  allConfig: js.configs.all,
-});
 
-export default defineConfig([
-  globalIgnores(['**/*.js']),
+/** @type {import('eslint').Linter.Config} */
+const config = [
+  js.configs.recommended,
+
   {
-    extends: [
-      ...compat.extends('eslint:recommended'),
-      ...compat.extends('plugin:jsx-a11y/recommended'),
-      ...compat.extends('plugin:@typescript-eslint/recommended-type-checked'),
-      ...nextCoreWebVitals,
-    ],
-
-    plugins: {
-      '@typescript-eslint': typescriptEslint,
-      'jsx-a11y': jsxA11Y,
-      'react-compiler': reactCompiler,
+    files: ['**/*.cjs'],
+    languageOptions: {
+      sourceType: 'commonjs',
+      globals: {
+        module: 'readonly',
+        require: 'readonly',
+        process: 'readonly',
+      },
     },
+  },
 
+  jsxA11y.flatConfigs.recommended,
+  // patch next core-web-vitals to not conflict with eslint-plugin-jsx-a11y
+  ...nextCoreWebVitals.map((config) => {
+    if (config.plugins?.['jsx-a11y']) {
+      const { 'jsx-a11y': _, ...restPlugins } = config.plugins;
+      return {
+        ...config,
+        plugins: restPlugins,
+      };
+    }
+    return config;
+  }),
+
+  ...tseslint.configs.recommendedTypeChecked,
+
+  {
     languageOptions: {
       parser: tsParser,
-      ecmaVersion: 5,
-      sourceType: 'script',
-
       parserOptions: {
-        projectService: true,
-        tsconfigRootDir: '.',
-        project: ['./tsconfig.json'],
+        projectService: {
+          allowDefaultProject: ['*.js', '*.mjs', '*.cjs'],
+        },
+        tsconfigRootDir: __dirname,
       },
+    },
+
+    plugins: {
+      'react-compiler': reactCompiler,
     },
 
     rules: {
       '@typescript-eslint/explicit-module-boundary-types': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
-      '@typescript-eslint/no-non-null-assertion': 'error',
-      '@typescript-eslint/no-unnecessary-type-assertion': 'error',
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          ignoreRestSiblings: true,
+        },
+      ],
+
       'react-compiler/react-compiler': 'error',
 
+      // accessingv these as globals is generally a bad idea
       'no-restricted-globals': [
         'error',
         'postMessage',
@@ -228,5 +246,6 @@ export default defineConfig([
       ],
     },
   },
-]);
+];
 
+export default config;
