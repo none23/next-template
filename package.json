@@ -6,25 +6,25 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "prepare": "husky"
   },
   "dependencies": {
     "babel-plugin-react-compiler": "19.0.0-beta-aeaed83-20250323",
-    "next": "15.2.4",
-    "react": "19.0.0",
-    "react-dom": "19.0.0"
+    "next": "16.0.3",
+    "react": "19.2.0",
+    "react-dom": "19.2.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.0.17",
     "@total-typescript/ts-reset": "^0.6.1",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "@types/node": "^22.13.14",
-    "@types/react": "npm:types-react@19.0.0-rc.1",
-    "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1",
+    "@types/react": "19.2.6",
+    "@types/react-dom": "19.2.3",
     "@typescript-eslint/eslint-plugin": "^8.28.0",
-    "eslint": "^8",
-    "eslint-config-next": "15.2.4",
+    "eslint": "^9",
+    "eslint-config-next": "16.0.3",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-react-compiler": "19.0.0-beta-decd7b8-20250118",
     "husky": "^9.1.7",
@@ -39,5 +39,11 @@
     "*.{js,jsx,ts,tsx,css,md,json}": [
       "pnpm prettier --write"
     ]
+  },
+  "pnpm": {
+    "overrides": {
+      "@types/react": "19.2.6",
+      "@types/react-dom": "19.2.3"
+    }
   }
 }
